@@ -11,7 +11,7 @@ public class ControllerMySQL {
     //с установкой временного пояса
     private final String URL = "jdbc:mysql://localhost:3306/data?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 
-    public void dataBase(){
+    public void printDataBase(){
 
         try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement statement = connection.createStatement()){
@@ -29,6 +29,15 @@ public class ControllerMySQL {
                 System.out.println("number: " + number);
             }
 
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addDataBase(String fio, int number){
+        try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement()){
+            statement.execute("insert into users values ( NULL ,'" + fio + "', " + number + ")");
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
