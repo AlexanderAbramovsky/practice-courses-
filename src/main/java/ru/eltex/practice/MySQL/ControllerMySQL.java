@@ -64,4 +64,24 @@ public class ControllerMySQL {
         }
     }
 
+    public void deleteItemDataBase(int id){
+        try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement()){
+            String requestMySQL = "DELETE FROM users WHERE id = " + id;
+            statement.execute(requestMySQL);
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteAllDataBase(){
+        try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement()){
+            String requestMySQL = "DELETE FROM users";
+            statement.execute(requestMySQL);
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
