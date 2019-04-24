@@ -6,9 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ControllerMySQL controllerMySQL = new ControllerMySQL();
-        controllerMySQL.addDataBase("Фролова Т.В.", 55123);
-        controllerMySQL.printDataBase();
     }
 
 }

@@ -37,7 +37,28 @@ public class ControllerMySQL {
     public void addDataBase(String fio, int number){
         try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement statement = connection.createStatement()){
-            statement.execute("insert into users values ( NULL ,'" + fio + "', " + number + ")");
+            String requestMySQL = "insert into users values ( NULL ,'" + fio + "', " + number + ")";
+            statement.execute(requestMySQL);
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateItemDataBase(int id, int number){
+        try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement()){
+            String requestMySQL = "UPDATE users SET number = " + number + " WHERE id = " + id;
+            statement.execute(requestMySQL);
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateItemDataBase(int id, String fio){
+        try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement()){
+            String requestMySQL = "UPDATE users SET fio = '" + fio + "' WHERE id = " + id;
+            statement.execute(requestMySQL);
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
